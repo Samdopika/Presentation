@@ -6,6 +6,7 @@
     <title>Auto-Indentation Feature in IDLE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css"/>
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
@@ -38,25 +39,35 @@
             font-family: 'Source Code Pro', monospace;
             font-size: 14px;
         }
+        #diagram {
+            display: block;
+            margin: auto;
+            background: #f4f4f4;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="animate__animated animate__fadeIn">Auto-Indentation Feature in IDLE</h1>
-        
-        <div class="section animate__animated animate__fadeInUp">
-            <h2>Introduction</h2>
-            <p>The Auto-Indentation feature in IDLE helps maintain consistent code formatting by automatically adjusting the indentation of new lines based on the context of the previous lines. This feature is particularly useful for Python programming, where indentation plays a crucial role in defining code blocks.</p>
-        </div>
-        
-        <div class="section animate__animated animate__fadeInUp">
-            <h2>Key Function: <code>newline_and_indent_event</code></h2>
-            <p>The main function responsible for auto-indentation in IDLE is <code>newline_and_indent_event</code>. This function is triggered when the Enter key is pressed, and it ensures that the new line is indented appropriately.</p>
-        </div>
-        
-        <div class="section animate__animated animate__fadeInUp">
-            <h2>Implementation Details</h2>
-            <pre class="code">
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1 class="animate__animated animate__fadeIn">Auto-Indentation Feature in IDLE</h1>
+            </section>
+            <section>
+                <div class="section animate__animated animate__fadeInUp">
+                    <h2>Introduction</h2>
+                    <p>The Auto-Indentation feature in IDLE helps maintain consistent code formatting by automatically adjusting the indentation of new lines based on the context of the previous lines. This feature is particularly useful for Python programming, where indentation plays a crucial role in defining code blocks.</p>
+                </div>
+            </section>
+            <section>
+                <div class="section animate__animated animate__fadeInUp">
+                    <h2>Key Function: <code>newline_and_indent_event</code></h2>
+                    <p>The main function responsible for auto-indentation in IDLE is <code>newline_and_indent_event</code>. This function is triggered when the Enter key is pressed, and it ensures that the new line is indented appropriately.</p>
+                </div>
+            </section>
+            <section>
+                <div class="section animate__animated animate__fadeInUp">
+                    <h2>Implementation Details</h2>
+                    <pre class="code">
 def newline_and_indent_event(self, event):
     """Insert a newline and indentation after Enter keypress event.
 
@@ -171,58 +182,36 @@ def newline_and_indent_event(self, event):
     finally:
         text.see("insert")
         text.undo_block_stop()
-            </pre>
-        </div>
-
-        <div class="section animate__animated animate__fadeInUp">
-            <h2>Function Breakdown</h2>
-            <p>The <code>newline_and_indent_event</code> function performs several key tasks:</p>
-            <ul>
-                <li>Deletes any selected text.</li>
-                <li>Counts leading whitespace to determine the indentation level.</li>
-                <li>Strips whitespace around the cursor position.</li>
-                <li>Inserts a new line and adjusts indentation based on the context of the current line.</li>
-                <li>Handles various cases such as block openers, block closers, continuation lines, and string literals.</li>
-            </ul>
-        </div>
-
-        <div class="section animate__animated animate__fadeInUp">
-            <h2>Diagram</h2>
-            <p>The following diagram illustrates the workflow of the <code>newline_and_indent_event</code> function:</p>
-            <pre class="code">
-graph TD;
-    A[EditorWindow Class] --> B[newline_and_indent_event]
-    B --> C[Check if text is selected]
-    C -->|Yes| D[Delete selected text]
-    C -->|No| E[Proceed with indentation calculation]
-    D --> E
-    E --> F[Calculate leading whitespace for indent size]
-    F --> G[Strip trailing whitespace before the cursor]
-    G --> H[Strip whitespace after the cursor]
-    H --> I[Insert new line]
-    I --> J[Determine proper indentation level]
-    J -->|Block opener| K[Call smart_indent_event]
-    J -->|Block closer| L[Call smart_backspace_event]
-    J -->|Continuation line| M[Reindent to continuation]
-    J -->|Inside string| N[Retain current indentation]
-    K --> O[Finalize and close undo block]
-    L --> O
-    M --> O
-    N --> O
-
-classDef function fill:#f96,stroke:#333,stroke-width:2px;
-classDef method fill:#6f6,stroke:#333,stroke-width:2px;
-class A, O, F, G, H, I, J, C, D, E, K, L, M, N function;
-class B method;
-            </pre>
-        </div>
-
-        <div class="section animate__animated animate__fadeInUp">
-            <h2>Conclusion</h2>
-            <p>The Auto-Indentation feature in IDLE streamlines the coding process by automatically managing indentation levels, ensuring consistent and readable code. This feature is an essential part of the IDLE editor, helping developers maintain proper code structure effortlessly.</p>
+                    </pre>
+                </div>
+            </section>
+            <section>
+                <div class="section animate__animated animate__fadeInUp">
+                    <h2>Function Breakdown</h2>
+                    <p>The <code>newline_and_indent_event</code> function performs several key tasks:</p>
+                    <ul>
+                        <li>Deletes any selected text.</li>
+                        <li>Counts leading whitespace to determine the indentation level.</li>
+                        <li>Strips whitespace around the cursor position.</li>
+                        <li>Inserts a new line and adjusts indentation based on the context of the current line.</li>
+                        <li>Handles various cases such as block openers, block closers, continuation lines, and string literals.</li>
+                    </ul>
+                </div>
+            </section>
+            <section>
+                <div class="section animate__animated animate__fadeInUp">
+                    <h2>Diagram</h2>
+                    <svg id="diagram" width="700" height="200"></svg>
+                </div>
+            </section>
+            <section>
+                <div class="section animate__animated animate__fadeInUp">
+                    <h2>Conclusion</h2>
+                    <p>The Auto-Indentation feature in IDLE streamlines the coding process by automatically managing indentation levels, ensuring consistent and readable code. This feature is an essential part of the IDLE editor, helping developers maintain proper code structure effortlessly.</p>
+                </div>
+            </section>
         </div>
     </div>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.1.1/d3.min.js"></script>
@@ -274,3 +263,4 @@ class B method;
     </script>
 </body>
 </html>
+
