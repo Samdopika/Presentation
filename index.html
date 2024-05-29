@@ -4,45 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auto-Indentation Feature in IDLE</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/white.min.css"/>
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
         }
-        h1, h2, h3 {
-            text-align: center;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-        .section {
-            margin: 20px 0;
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        pre {
+        .reveal pre {
             background: #272822;
             color: #f8f8f2;
             padding: 15px;
             border-radius: 8px;
             overflow-x: auto;
         }
-        .code {
+        .reveal .code {
             font-family: 'Source Code Pro', monospace;
             font-size: 14px;
+        }
+        .reveal section img {
+            max-width: 100%;
+            height: auto;
+        }
+        .reveal section h1, .reveal section h2 {
+            text-align: center;
+        }
+        .reveal section ul {
+            text-align: left;
         }
         #diagram {
             display: block;
             margin: auto;
-            background: #f4f4f4;
         }
     </style>
 </head>
@@ -50,24 +41,20 @@
     <div class="reveal">
         <div class="slides">
             <section>
-                <h1 class="animate__animated animate__fadeIn">Auto-Indentation Feature in IDLE</h1>
+                <h1>Auto-Indentation Feature in IDLE</h1>
+                <p>Enhancing code formatting and readability automatically.</p>
             </section>
             <section>
-                <div class="section animate__animated animate__fadeInUp">
-                    <h2>Introduction</h2>
-                    <p>The Auto-Indentation feature in IDLE helps maintain consistent code formatting by automatically adjusting the indentation of new lines based on the context of the previous lines. This feature is particularly useful for Python programming, where indentation plays a crucial role in defining code blocks.</p>
-                </div>
+                <h2>Introduction</h2>
+                <p>The Auto-Indentation feature in IDLE helps maintain consistent code formatting by automatically adjusting the indentation of new lines based on the context of the previous lines. This feature is particularly useful for Python programming, where indentation plays a crucial role in defining code blocks.</p>
             </section>
             <section>
-                <div class="section animate__animated animate__fadeInUp">
-                    <h2>Key Function: <code>newline_and_indent_event</code></h2>
-                    <p>The main function responsible for auto-indentation in IDLE is <code>newline_and_indent_event</code>. This function is triggered when the Enter key is pressed, and it ensures that the new line is indented appropriately.</p>
-                </div>
+                <h2>Key Function: <code>newline_and_indent_event</code></h2>
+                <p>The main function responsible for auto-indentation in IDLE is <code>newline_and_indent_event</code>. This function is triggered when the Enter key is pressed, and it ensures that the new line is indented appropriately.</p>
             </section>
             <section>
-                <div class="section animate__animated animate__fadeInUp">
-                    <h2>Implementation Details</h2>
-                    <pre class="code">
+                <h2>Implementation Details</h2>
+                <pre class="code">
 def newline_and_indent_event(self, event):
     """Insert a newline and indentation after Enter keypress event.
 
@@ -182,33 +169,26 @@ def newline_and_indent_event(self, event):
     finally:
         text.see("insert")
         text.undo_block_stop()
-                    </pre>
-                </div>
+                </pre>
             </section>
             <section>
-                <div class="section animate__animated animate__fadeInUp">
-                    <h2>Function Breakdown</h2>
-                    <p>The <code>newline_and_indent_event</code> function performs several key tasks:</p>
-                    <ul>
-                        <li>Deletes any selected text.</li>
-                        <li>Counts leading whitespace to determine the indentation level.</li>
-                        <li>Strips whitespace around the cursor position.</li>
-                        <li>Inserts a new line and adjusts indentation based on the context of the current line.</li>
-                        <li>Handles various cases such as block openers, block closers, continuation lines, and string literals.</li>
-                    </ul>
-                </div>
+                <h2>Function Breakdown</h2>
+                <p>The <code>newline_and_indent_event</code> function performs several key tasks:</p>
+                <ul>
+                    <li>Deletes any selected text.</li>
+                    <li>Counts leading whitespace to determine the indentation level.</li>
+                    <li>Strips whitespace around the cursor position.</li>
+                    <li>Inserts a new line and adjusts indentation based on the context of the current line.</li>
+                    <li>Handles various cases such as block openers, block closers, continuation lines, and string literals.</li>
+                </ul>
             </section>
             <section>
-                <div class="section animate__animated animate__fadeInUp">
-                    <h2>Diagram</h2>
-                    <svg id="diagram" width="700" height="200"></svg>
-                </div>
+                <h2>Diagram</h2>
+                <svg id="diagram" width="700" height="200"></svg>
             </section>
             <section>
-                <div class="section animate__animated animate__fadeInUp">
-                    <h2>Conclusion</h2>
-                    <p>The Auto-Indentation feature in IDLE streamlines the coding process by automatically managing indentation levels, ensuring consistent and readable code. This feature is an essential part of the IDLE editor, helping developers maintain proper code structure effortlessly.</p>
-                </div>
+                <h2>Conclusion</h2>
+                <p>The Auto-Indentation feature in IDLE streamlines the coding process by automatically managing indentation levels, ensuring consistent and readable code. This feature is an essential part of the IDLE editor, helping developers maintain proper code structure effortlessly.</p>
             </section>
         </div>
     </div>
@@ -263,4 +243,3 @@ def newline_and_indent_event(self, event):
     </script>
 </body>
 </html>
-
